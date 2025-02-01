@@ -2,6 +2,7 @@ package com.proj.conuhax.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Entity
 @Data
@@ -17,13 +18,14 @@ public class JobApplication {
     @Column(nullable = false)
     private String companyName;
 
+    @Column(nullable = true)
+    private String description;
+
     @Column(nullable = false)
     private String roleName;
 
-    // This field indicates the owner of the job application.
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User owner;
 
-    // You can add additional associations or fields later, e.g., comments.
 }

@@ -1,9 +1,13 @@
 services:
   postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
+    image: postgres:17
+    container_name: local-postgres
     ports:
-      - '5432'
+      - "5433:5433"
+    environment:
+      POSTGRES_DB: conuhacks
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+
+volumes:
+  postgres_data:
