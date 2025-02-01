@@ -10,4 +10,6 @@ public class ConuhaxApplication {
         SpringApplication.run(ConuhaxApplication.class, args);
     }
 
+
+
 }
