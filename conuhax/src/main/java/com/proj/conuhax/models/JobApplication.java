@@ -13,8 +13,11 @@ public class JobApplication {
 
     @Enumerated(EnumType.STRING)
     private ApplicationStatus status;
+
     private String companyName;
+
     private String roleName;
+
     // private Comment comments; might do this later
 
 }

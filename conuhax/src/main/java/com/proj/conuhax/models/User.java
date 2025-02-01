@@ -1,18 +1,29 @@
 package com.proj.conuhax.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<JobApplication> applications = new ArrayList<>();
+    @Column(nullable = true)
+    private String school;
 
+    @Column(unique = true)
+    private String username;
+
+    @Column(unique = true)
+    private String email;
+
+    private String password;
+
+    @OneToMany(mappedBy = "user")
+    private List<JobApplication> jobApplications;
 }
