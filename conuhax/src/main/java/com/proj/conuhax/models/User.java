@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "users")
 public class User {
 
     @Id
@@ -22,8 +23,13 @@ public class User {
     @Column(unique = true)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    // The mappedBy value here should match the field name in JobApplication, which is "owner"
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<JobApplication> jobApplications;
+
+
+
 }
