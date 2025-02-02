@@ -9,10 +9,10 @@ export default function Page() {
             <h1 className="text-5xl font-bold font-mono">You're (not) Cooked</h1>
             <nav className="flex flex-row gap-4 mt-2.5">
                 <div className="">
-                    <Button className="font-mono" variant="default">Application Menu</Button>
+                    <Button className="font-mono bg-black" variant="default">Application Menu</Button>
                 </div>
                 <div className="">
-                    <Button className="font-mono" variant="default">Back</Button>
+                    <Button className="font-mono bg-black" variant="default">Back</Button>
                 </div>
             </nav>
         </div>

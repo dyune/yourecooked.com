@@ -3,12 +3,14 @@ export const Playerpoint = () => {
         <div>
             <table>
                 <tbody>
-                    <tr className="border-black dark:bg-gray-800 dark:border-gray-700 rounded-lg">
-                        <th scope="row" className="px-20 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-black text-white font-extrabold border-black border-2">Tyler</th>
-                        <td className="px-20 py-4 text-gray-700 font-extrabold border-black border-2 bg-white">19</td>
+                <tr className="dark:bg-gray-800 dark:border-gray-700 rounded-lg">
+    <th scope="row" className="rounded-lg px-8 py-2 font-medium text-gray-900 text-xl whitespace-nowrap dark:text-white bg-black text-white font-bold font-mono">Tyler</th>
+    <td className="rounded-lg px-8 py-2 text-white font-mono font-extrabold text-xl bg-black">19</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     );
 };
+
+
