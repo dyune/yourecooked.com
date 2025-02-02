@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping()  // Define a more specific base path
+@RequestMapping()
 public class JobApplicationController {
 
     private final JobApplicationServices jobApplicationService;
@@ -57,13 +57,16 @@ public class JobApplicationController {
         if (jobApplication == null) {
             return ResponseEntity.notFound().build();
         }
-        String currentStatus = jobApplication.getStatus().toString();
+
+
+        ApplicationStatus previousStatus = jobApplication.getStatus();
 
 
         String status = updates.get("status");
         if (status != null) {
             try {
-                jobApplication.setStatus(ApplicationStatus.valueOf(status.toUpperCase()));
+                ApplicationStatus newStatus = ApplicationStatus.valueOf(status.toUpperCase());
+                jobApplication.setStatus(newStatus);
             } catch (IllegalArgumentException e) {
                 return ResponseEntity.badRequest().body(null);
             }
@@ -71,6 +74,10 @@ public class JobApplicationController {
 
 
         JobApplication updatedJobApplication = jobApplicationService.save(jobApplication);
+
+
+        jobApplicationService.updateUserPoints(jobApplication, previousStatus);
+
         return ResponseEntity.ok(updatedJobApplication);
     }
 

@@ -66,4 +66,9 @@ public class JobApplication {
     public Long getUserId() {
         return this.user_id;
     }
+
+    public Long getId() {
+        return this.id;
+    }
+
 }

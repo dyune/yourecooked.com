@@ -23,30 +23,38 @@ public class JobApplicationServices {
         }
 
         JobApplication createdJobApplication = jobApplicationRepository.save(jobApplication);
-
-        ApplicationStatus currentStatus = jobApplication.getStatus();
-        // Update user points when the job application is created
-        updateUserPoints(jobApplication, currentStatus);
+        updateUserPoints(jobApplication, null);  // No previous status for a new application
 
         return createdJobApplication;
     }
 
-    public JobApplication save(JobApplication jobApplication, ApplicationStatus currentStatus) {
+    public JobApplication save(JobApplication jobApplication) {
         JobApplication updatedJobApplication = jobApplicationRepository.save(jobApplication);
-
-
-        updateUserPoints(jobApplication, currentStatus );
-
         return updatedJobApplication;
     }
 
-    private void updateUserPoints(JobApplication jobApplication, ApplicationStatus currentStatus) {
-        User user = userService.getUserById(jobApplication.getUserId()); // Fetch user by jobApplication's userId
+
+    public void updateUserPoints(JobApplication jobApplication, ApplicationStatus previousStatus) {
+        User user = userService.getUserById(jobApplication.getUserId());
         if (user != null) {
-            int pointsToAdd = getPointsForStatus(jobApplication.getStatus());
-            int currentPoints = user.getPoints();
-            user.setPoints(currentPoints + pointsToAdd); // Add points based on status
-            userService.save(user); // Save the updated user
+            int previousPoints = user.getPoints();
+            int currentPoints = getPointsForStatus(jobApplication.getStatus());
+
+            if(currentPoints ==0){
+                return;
+            }
+            if(currentPoints < previousPoints){
+
+                user.setPoints(user.getPoints() - (previousPoints - currentPoints));
+                userService.save(user);
+                return;
+            }
+            user.setPoints(user.getPoints() + (currentPoints - previousPoints));
+            userService.save(user);
+
+
+
+            // Save the updated user
         }
     }
 
