@@ -2,9 +2,17 @@ package com.proj.conuhax.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import com.proj.conuhax.models.ApplicationStatus;
+
 
 @Entity
 @Data
+@Getter
+@Setter
+@NoArgsConstructor
 public class JobApplication {
 
     @Id

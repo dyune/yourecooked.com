@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping()
 public class JobApplicationController {
@@ -26,12 +28,15 @@ public class JobApplicationController {
         if (user == null) {
             return ResponseEntity.notFound().build();  // Return 404 if the user doesn't exist
         }
+        else {
+            List<JobApplication> newApplications = user.getJobApplications();
+            newApplications.add(jobApplication);
+            user.setJobApplications(newApplications);
+            jobApplication.setUserEmail(user.getEmail());
 
-        // Assign the user to the job application
-        jobApplication.setUserEmail(user.getEmail());
-
-        // Create and save the job application
-        JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
-        return ResponseEntity.ok(createdJobApplication);  // Return the created job application
+            // Create and save the job application
+            JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
+            return ResponseEntity.ok(createdJobApplication);  // Return the created job application
+        }
     }
 }
