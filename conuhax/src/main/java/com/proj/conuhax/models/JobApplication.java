@@ -2,6 +2,8 @@ package com.proj.conuhax.models;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 public class JobApplication {
 
@@ -18,57 +20,46 @@ public class JobApplication {
     @Column(nullable = true)
     private String description;
 
-
     @Column(nullable = false)
     private String roleName;
 
-    @Column(name = "owner_id")
-    private Long user_id;  // or similar field with a mismatch in naming convention
+    @Column(name = "user_id")
+    private Long user_id;
 
+    @Column(nullable = false)
+    private LocalDate date;
 
+    // Other getters and setters
 
-    public Long getId() {
-        return id;
+    // Automatically set the date to NOW when the object is created
+    @PrePersist
+    public void setDate() {
+        if (this.date == null) {
+            this.date = LocalDate.now();  // Sets date to current date when the entity is persisted
+        }
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.user_id = userId;
     }
 
     public ApplicationStatus getStatus() {
-        return status;
+        return this.status;
     }
 
-    public void setStatus(ApplicationStatus status) {
-        this.status = status;
+    public void setStatus(ApplicationStatus applicationStatus) {
+        this.status = applicationStatus;
     }
 
     public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+        return this.companyName;
     }
 
     public String getRoleName() {
-        return roleName;
+        return this.roleName;
     }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public void setUser_Id(Long user_id) {
-        this.setUser_Id(user_id);
+    // killl meeeee
+    public String getDescription() {
+        return this.description;
     }
 }
-

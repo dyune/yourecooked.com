@@ -20,4 +20,18 @@ public class UserServices {
         return userRepository.save(user);  // Save and return the user object
     }
 
+    public int calculateUserPoints(User user) {
+
+        // Need to retrieve all activities in the database.
+
+        return 0;
+    }
+
+    public int calculateOfferApplicationRatio(User user) {
+
+        // Get number of Offers and number of Applications
+
+        return 0;
+    }
+
 }

@@ -15,9 +15,10 @@ public class JobApplicationServices {
     }
 
     public JobApplication createJobApplication(JobApplication jobApplication) {
+        // Default status to APPLIED if not already set
         if (jobApplication.getStatus() == null) {
             jobApplication.setStatus(ApplicationStatus.APPLIED);
         }
-        return jobApplicationRepository.save(jobApplication);
+        return jobApplicationRepository.save(jobApplication);  // Save the job application
     }
 }

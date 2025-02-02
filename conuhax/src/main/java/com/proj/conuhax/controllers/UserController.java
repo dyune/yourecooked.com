@@ -27,5 +27,16 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/user/{id}/points")
+    public int getUserPoints(@PathVariable Long id) {
+        return userService.calculateUserPoints(userService.getUserById(id));
+    }
+
+    @GetMapping("/user/{id}/offer_app_ratio")
+    public int getUserOfferApplicationRatio(@PathVariable Long id) {
+        return userService.calculateOfferApplicationRatio(userService.getUserById(id));
+    }
+
 }
 

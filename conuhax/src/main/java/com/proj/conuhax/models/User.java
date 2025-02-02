@@ -24,6 +24,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private int points;
+
     // The User knows about its JobApplications.
     // This unidirectional one-to-many mapping tells JPA to store the foreign key (owner_id)
     // in the job_applications table. Note that JobApplication does not have any reference to User.
@@ -80,5 +83,13 @@ public class User {
 
     public void setJobApplications(List<JobApplication> jobApplications) {
         this.jobApplications = jobApplications;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
