@@ -8,26 +8,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping()  // Define base path
 public class JobApplicationController {
 
-    private JobApplicationServices jobApplicationService;
+    private final JobApplicationServices jobApplicationService;
+    private final UserServices userService;
 
-    private UserServices userService;
+    public JobApplicationController(JobApplicationServices jobApplicationService, UserServices userService) {
+        this.jobApplicationService = jobApplicationService;
+        this.userService = userService;
+    }
 
     @PostMapping("/user/{userId}/application")
     public ResponseEntity<JobApplication> createJobApplication(@PathVariable Long userId, @RequestBody JobApplication jobApplication) {
-        // Fetch the user by their ID
+
         User user = userService.getUserById(userId);
-
         if (user == null) {
-            return ResponseEntity.notFound().build();  // Return 404 if the user doesn't exist
+            return ResponseEntity.notFound().build();
         }
-        else {
-            // Create and save the job application
-            JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
-            return ResponseEntity.ok(createdJobApplication);  // Return the created job application
-        }
+        jobApplication.setUser_Id(userId);
+
+        JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
+        return ResponseEntity.ok(createdJobApplication);
     }
-
-
 }

@@ -2,21 +2,30 @@ package com.proj.conuhax.controllers;
 
 import com.proj.conuhax.models.User;
 import com.proj.conuhax.services.UserServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
-    private UserServices userService;
+    @Autowired
+    private UserServices userService;  // Ensure this is properly autowired
 
-    @GetMapping("user/{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getUserById(id);  // This returns the user or null if not found
+    @PostMapping("/create")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.createUser(user));
     }
 
-    @PostMapping("user/create")
-    public User createUser(@RequestBody User user) {
-        // Delegate user creation logic to UserService
-        return userService.createUser(user);  // Saves the user and returns the saved user object
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        User user = userService.getUserById(id);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
+
