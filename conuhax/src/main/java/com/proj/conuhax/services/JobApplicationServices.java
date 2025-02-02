@@ -17,54 +17,45 @@ public class JobApplicationServices {
         this.userService = userService;
     }
 
-    public JobApplication createJobApplication(JobApplication jobApplication) {
-        if (jobApplication.getStatus() == null) {
-            jobApplication.setStatus(ApplicationStatus.APPLIED);
-        }
-
-        JobApplication createdJobApplication = jobApplicationRepository.save(jobApplication);
-        updateUserPoints(jobApplication, null);  // No previous status for a new application
-
-        return createdJobApplication;
-    }
-
     public JobApplication save(JobApplication jobApplication) {
         JobApplication updatedJobApplication = jobApplicationRepository.save(jobApplication);
         return updatedJobApplication;
     }
 
 
-    public void updateUserPoints(JobApplication jobApplication, ApplicationStatus previousStatus) {
+    public JobApplication createJobApplication(JobApplication jobApplication) {
+        if (jobApplication.getStatus() == null) {
+            jobApplication.setStatus(ApplicationStatus.APPLIED); // Ensure the status is never null
+        }
+
+        JobApplication createdJobApplication = jobApplicationRepository.save(jobApplication);
+
+
+        return createdJobApplication;
+    }
+
+    public void updateUserPoints(JobApplication jobApplication, ApplicationStatus previousStatus, ApplicationStatus newStatus) {
         User user = userService.getUserById(jobApplication.getUserId());
+        int prevStatPts = getPointsForStatus(previousStatus);
         if (user != null) {
-            int previousPoints = user.getPoints();
-            int currentPoints = getPointsForStatus(jobApplication.getStatus());
-
-            if(currentPoints ==0){
-                return;
-            }
-            if(currentPoints < previousPoints){
-
-                user.setPoints(user.getPoints() - (previousPoints - currentPoints));
+            int newPoints = getPointsForStatus(newStatus);
+            if (newPoints!= 0) {
+                user.setPoints(user.getPoints() + newPoints - prevStatPts); // Add or subtract the difference
                 userService.save(user);
-                return;
             }
-            user.setPoints(user.getPoints() + (currentPoints - previousPoints));
-            userService.save(user);
-
-
-
-            // Save the updated user
         }
     }
 
+
+
     public void deleteJobApplication(Long id) {
         JobApplication jobApplication = jobApplicationRepository.findById(id).orElse(null);
-        if (jobApplication != null) {
-            // Update the user's points based on the application's status (subtract the points)
-            removeUserPoints(jobApplication);
 
-            // Delete the job application
+
+        if (jobApplication != null) {
+            int pointsToRemove = getPointsForStatus(jobApplication.getStatus());
+            User user = userService.getUserById(jobApplication.getUserId());
+            user.setPoints(user.getPoints() - pointsToRemove);
             jobApplicationRepository.delete(jobApplication);
         }
     }

@@ -1,37 +1,50 @@
 package com.proj.conuhax.services;
 
+import com.proj.conuhax.models.JobApplication;
 import com.proj.conuhax.models.User;
+import com.proj.conuhax.repositories.JobApplicationRepository;
 import com.proj.conuhax.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserServices {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final JobApplicationRepository jobApplicationRepository;
 
+    public UserServices(UserRepository userRepository, JobApplicationRepository jobApplicationRepository) {
+        this.userRepository = userRepository;
+        this.jobApplicationRepository = jobApplicationRepository;
+    }
+
+    // Method to fetch user by ID
     public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);  // Returns null if not found
+        return userRepository.findById(id).orElse(null); // Returns null if the user does not exist
     }
 
-    public User createUser(User user) {
-        // You can add more validation logic here if needed (e.g., checking if the user already exists)
-        return userRepository.save(user);  // Save and return the user object
+    // Method to save or create a user
+    public User save(User user) {
+        return userRepository.save(user); // This will create a new user or update an existing one
     }
 
+    // Other methods related to user operations
     public int calculateUserPoints(User user) {
-
-
-        return 0;
+        return user.getPoints();  // Assuming the user has a 'points' field
     }
 
     public int calculateOfferApplicationRatio(User user) {
-
+        // Your logic for calculating offer application ratio
         return 0;
     }
 
-    public void save(User user) {
-        userRepository.save(user);
+    public List<JobApplication> getAllJobApplications() {
+        return jobApplicationRepository.findAll();
     }
+    public User createUser(User user) {
+        // Perform any validation or preprocessing on the user object if needed
+        return userRepository.save(user); // Save the user to the database
+    }
+
 }

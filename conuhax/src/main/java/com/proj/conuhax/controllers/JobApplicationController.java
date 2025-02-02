@@ -17,16 +17,16 @@ public class JobApplicationController {
     private final JobApplicationServices jobApplicationService;
     private final UserServices userService;
 
+
     public JobApplicationController(JobApplicationServices jobApplicationService, UserServices userService) {
         this.jobApplicationService = jobApplicationService;
         this.userService = userService;
+
     }
 
     @PostMapping("/user/{userId}/application")
     public ResponseEntity<JobApplication> createJobApplication(
             @PathVariable Long userId, @RequestBody JobApplication jobApplication) {
-
-        // Add this for debugging
 
         // Validate required fields
         if (jobApplication.getCompanyName() == null || jobApplication.getCompanyName().isEmpty()) {
@@ -37,18 +37,29 @@ public class JobApplicationController {
             return ResponseEntity.badRequest().body(null);  // Role name is required
         }
 
+
         // Check if the user exists
         User user = userService.getUserById(userId);
         if (user == null) {
             return ResponseEntity.notFound().build();  // Return 404 if user is not found
         }
 
-        // Set the user ID in the job application and create the application
+        // Set the status to "APPLIED" by default
+        jobApplication.setStatus(ApplicationStatus.APPLIED);
+
+        // Set the user ID in the job application
         jobApplication.setUserId(userId);
+
+        // Create the job application (saving to DB)
         JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
+
+       // Increase the user's points by 1 (because status is "APPLIED")
+        user.setPoints(user.getPoints() + 1);  // Increase points by 1
+        userService.save(user);  // Save the updated user
 
         return ResponseEntity.ok(createdJobApplication);  // Return the created job application
     }
+
 
     @PatchMapping("/application/{id}")
     public ResponseEntity<JobApplication> updateApplicationStatus(@PathVariable Long id, @RequestBody Map<String, String> updates) {
@@ -58,28 +69,30 @@ public class JobApplicationController {
             return ResponseEntity.notFound().build();
         }
 
-
+        // Capture the previous status before updating
         ApplicationStatus previousStatus = jobApplication.getStatus();
-
 
         String status = updates.get("status");
         if (status != null) {
             try {
+                // Update status
                 ApplicationStatus newStatus = ApplicationStatus.valueOf(status.toUpperCase());
                 jobApplication.setStatus(newStatus);
+
             } catch (IllegalArgumentException e) {
-                return ResponseEntity.badRequest().body(null);
+                return ResponseEntity.badRequest().body(null);  // Invalid status
             }
         }
 
-
+        // Save the updated job application (status change)
         JobApplication updatedJobApplication = jobApplicationService.save(jobApplication);
 
-
-        jobApplicationService.updateUserPoints(jobApplication, previousStatus);
+        // Now update the user's points based on the status change
+        jobApplicationService.updateUserPoints(updatedJobApplication, previousStatus, ApplicationStatus.valueOf(status.toUpperCase()));
 
         return ResponseEntity.ok(updatedJobApplication);
     }
+
     @DeleteMapping("/application/{id}")
     public ResponseEntity<Void> deleteJobApplication(@PathVariable Long id) {
         JobApplication jobApplication = jobApplicationService.getJobApplicationById(id);

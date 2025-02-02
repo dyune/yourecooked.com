@@ -71,4 +71,7 @@ public class JobApplication {
         return this.id;
     }
 
+    public LocalDate getDate() {
+        return this.date;
+    }
 }
