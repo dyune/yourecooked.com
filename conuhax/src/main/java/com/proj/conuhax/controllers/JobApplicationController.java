@@ -80,6 +80,17 @@ public class JobApplicationController {
 
         return ResponseEntity.ok(updatedJobApplication);
     }
+    @DeleteMapping("/application/{id}")
+    public ResponseEntity<Void> deleteJobApplication(@PathVariable Long id) {
+        JobApplication jobApplication = jobApplicationService.getJobApplicationById(id);
+        if (jobApplication == null) {
+            return ResponseEntity.notFound().build();  // If the job application doesn't exist
+        }
+
+        jobApplicationService.deleteJobApplication(id);  // Call the delete service method
+        return ResponseEntity.noContent().build();  // Successfully deleted
+    }
+
 
 
 }

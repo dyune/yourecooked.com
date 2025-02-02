@@ -22,14 +22,11 @@ public class UserServices {
 
     public int calculateUserPoints(User user) {
 
-        // Need to retrieve all activities in the database.
 
         return 0;
     }
 
     public int calculateOfferApplicationRatio(User user) {
-
-        // Get number of Offers and number of Applications
 
         return 0;
     }

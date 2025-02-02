@@ -58,6 +58,27 @@ public class JobApplicationServices {
         }
     }
 
+    public void deleteJobApplication(Long id) {
+        JobApplication jobApplication = jobApplicationRepository.findById(id).orElse(null);
+        if (jobApplication != null) {
+            // Update the user's points based on the application's status (subtract the points)
+            removeUserPoints(jobApplication);
+
+            // Delete the job application
+            jobApplicationRepository.delete(jobApplication);
+        }
+    }
+
+    // Method to subtract the points associated with the application status
+    private void removeUserPoints(JobApplication jobApplication) {
+        User user = userService.getUserById(jobApplication.getUserId());
+        if (user != null) {
+            int pointsToRemove = getPointsForStatus(jobApplication.getStatus());
+            user.setPoints(user.getPoints() - pointsToRemove);
+            userService.save(user);
+        }
+    }
+
     private int getPointsForStatus(ApplicationStatus status) {
         switch (status) {
             case APPLIED:
