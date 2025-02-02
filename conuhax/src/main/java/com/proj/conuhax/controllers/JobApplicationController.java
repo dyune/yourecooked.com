@@ -32,32 +32,28 @@ public class JobApplicationController {
         if (jobApplication.getCompanyName() == null || jobApplication.getCompanyName().isEmpty()) {
             return ResponseEntity.badRequest().body(null);  // Company name is required
         }
-
         if (jobApplication.getRoleName() == null || jobApplication.getRoleName().isEmpty()) {
-            return ResponseEntity.badRequest().body(null);  // Role name is required
+            return ResponseEntity.badRequest().body(null);
         }
-
-
-        // Check if the user exists
         User user = userService.getUserById(userId);
         if (user == null) {
             return ResponseEntity.notFound().build();  // Return 404 if user is not found
         }
 
-        // Set the status to "APPLIED" by default
         jobApplication.setStatus(ApplicationStatus.APPLIED);
-
-        // Set the user ID in the job application
         jobApplication.setUserId(userId);
 
-        // Create the job application (saving to DB)
-        JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
+        try {
+            JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
+            user.setPoints(user.getPoints() + 1);
+            userService.save(user);
+            return ResponseEntity.ok(createdJobApplication);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
 
-       // Increase the user's points by 1 (because status is "APPLIED")
-        user.setPoints(user.getPoints() + 1);  // Increase points by 1
-        userService.save(user);  // Save the updated user
 
-        return ResponseEntity.ok(createdJobApplication);  // Return the created job application
+
     }
 
 
@@ -69,7 +65,6 @@ public class JobApplicationController {
             return ResponseEntity.notFound().build();
         }
 
-        // Capture the previous status before updating
         ApplicationStatus previousStatus = jobApplication.getStatus();
 
         String status = updates.get("status");
@@ -84,10 +79,8 @@ public class JobApplicationController {
             }
         }
 
-        // Save the updated job application (status change)
         JobApplication updatedJobApplication = jobApplicationService.save(jobApplication);
 
-        // Now update the user's points based on the status change
         jobApplicationService.updateUserPoints(updatedJobApplication, previousStatus, ApplicationStatus.valueOf(status.toUpperCase()));
 
         return ResponseEntity.ok(updatedJobApplication);
@@ -97,11 +90,11 @@ public class JobApplicationController {
     public ResponseEntity<Void> deleteJobApplication(@PathVariable Long id) {
         JobApplication jobApplication = jobApplicationService.getJobApplicationById(id);
         if (jobApplication == null) {
-            return ResponseEntity.notFound().build();  // If the job application doesn't exist
+            return ResponseEntity.notFound().build();
         }
 
-        jobApplicationService.deleteJobApplication(id);  // Call the delete service method
-        return ResponseEntity.noContent().build();  // Successfully deleted
+        jobApplicationService.deleteJobApplication(id);
+        return ResponseEntity.noContent().build();
     }
 
 
