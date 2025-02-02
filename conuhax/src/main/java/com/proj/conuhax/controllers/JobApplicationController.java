@@ -1,22 +1,37 @@
 package com.proj.conuhax.controllers;
 
 import com.proj.conuhax.models.JobApplication;
-import com.proj.conuhax.repository.UserRepository;
+import com.proj.conuhax.models.User;
+import com.proj.conuhax.services.JobApplicationService;
+import com.proj.conuhax.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping()
 public class JobApplicationController {
 
-    private UserRepository userRepository;
+    @Autowired
+    private JobApplicationService jobApplicationService;
 
-//    @GetMapping("{userId}/application/{applicationId}")
-//    public JobApplication getJobApplication(@PathVariable Long userId, @PathVariable Long applicationId) {
-//        JobApplication application;
-//
-//    }
+    @Autowired
+    private UserService userService;
 
+    @PostMapping("/user/{userId}/application")
+    public ResponseEntity<JobApplication> createJobApplication(@PathVariable Long userId, @RequestBody JobApplication jobApplication) {
+        // Fetch the user by their ID
+        User user = userService.getUserById(userId);
+
+        if (user == null) {
+            return ResponseEntity.notFound().build();  // Return 404 if the user doesn't exist
+        }
+
+        // Assign the user to the job application
+        jobApplication.setUserEmail(user.getEmail());
+
+        // Create and save the job application
+        JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
+        return ResponseEntity.ok(createdJobApplication);  // Return the created job application
+    }
 }
