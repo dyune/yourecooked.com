@@ -51,9 +51,6 @@ public class JobApplicationController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }
-
-
-
     }
 
 
