@@ -5,6 +5,8 @@ import { Dashboard } from "@/components/ui/dashboard";
 import { LoginDemo } from "@/components/ui/login";
 import { TableDemo } from "@/components/ui/applications";
 import { ButtonDemo } from "@/components/ui/applications";
+import { PlayerPoint } from "@/components/ui/playerpoint";
+import { Friendboard } from "@/components/ui/FriendActivity";
 export default function Home() {
   return (
     <div>
