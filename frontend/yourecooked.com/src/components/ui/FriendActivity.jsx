@@ -11,7 +11,7 @@ import {
 
 export const Friendboard = () => {
     return(
-        <div className="border-black border-4 w-3/6 px-0 py-4 bg-gradient-to-br from-white to-gray-400 rounded-xl">
+        <div className="border-black border-4 w-3/6 px-0 py-10 bg-gradient-to-br from-white to-gray-400 rounded-xl">
             <Table>
                 <TableCaption className="text-2 font-extrabold text-violet-500">Friend Activities</TableCaption>
                     <TableBody>

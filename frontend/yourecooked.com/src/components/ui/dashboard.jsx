@@ -14,16 +14,16 @@ export const Dashboard = () => {
         <div className="absolute flex justify-end w-screen top-64 py-10">
           <PlayerPoint />
         </div>
-        <div className="absolute flex justify-center items-center h-screen w-screen flex-row left-40 bottom-1 border-spacing-3">
+        <div className="absolute flex justify-center items-center h-screen w-screen flex-row left-40 top-6 border-spacing-3">
           <Button variant="outline">Application Menu</Button>
         </div>
         <div className="absolute flex justify-end h-screen w-screen px-20 py-8">
           <Button variant="outline">Back</Button>
         </div>
-        <div className="px-20 py-4">
+        <div className="px-20 py-8">
               <Friendboard />
             </div>
-        <div className="px-20 top-4 font-extrabold font-mono">
+        <div className="px-20 top-4 font-extrabold font-mono text-3xl">
           <LeadName />
         </div>
     </div>

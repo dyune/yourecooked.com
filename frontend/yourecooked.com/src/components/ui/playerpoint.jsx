@@ -2,7 +2,7 @@
 
 export const PlayerPoint = () => {
     return(
-        <div className="relative overflow-x-auto px-20 max-h-64">
+        <div className="relative overflow-x-auto px-20 top-20 max-h-64">
             <table>
                 <tbody>
                     <tr className="border-black dark:bg-gray-800 dark:border-gray-700 rounded-lg">
