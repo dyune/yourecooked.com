@@ -21,13 +21,10 @@ public class JobApplication {
     @Column(nullable = false)
     private String roleName;
 
-    // There is no reference to User here.
-    // The owner_id foreign key will be automatically set based on the User entity's mapping.
+    @Column(nullable = false)
+    private Long ownerId;
 
-    // If needed, you could also store other user-related information such as email, but that
-    // would be just duplicative data.
-    @Column(name = "user_email")
-    private String userEmail;
+
 
     public JobApplication() {
     }
@@ -72,12 +69,13 @@ public class JobApplication {
         this.roleName = roleName;
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public Long getOwnerId() {
+        return ownerId;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
+
 }
 
