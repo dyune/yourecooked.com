@@ -4,11 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b97882c-9030-4897-be96-b24a2386f733" name="Changes" comment="" />
+    <list default="true" id="9b97882c-9030-4897-be96-b24a2386f733" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ButtonDemo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Dashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/TableDemo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/FriendActivity.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/FriendActivity.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/applications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Applications.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/dashboard.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/leaderboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ScrollableBox.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/playerpoint.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Playerpoint.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JSX File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -20,22 +40,43 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2sRqcg4OxMtEILNW7LWcgNqLOGL" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Node.js.page.js.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "celine-branch",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/celineshao/yourecooked.com",
+    "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/yourecooked.com/src/components" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="yourecooked.com" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="yourecooked.com" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,5 +87,8 @@
       <updated>1738428818302</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

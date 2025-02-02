@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
   
-export const LoginDemo = () => {
+export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false); // State to toggle between Login and SignUp
