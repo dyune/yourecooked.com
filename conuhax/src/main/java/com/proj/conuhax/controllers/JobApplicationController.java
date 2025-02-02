@@ -1,5 +1,6 @@
 package com.proj.conuhax.controllers;
 
+import com.proj.conuhax.models.ApplicationStatus;
 import com.proj.conuhax.models.JobApplication;
 import com.proj.conuhax.models.User;
 import com.proj.conuhax.services.JobApplicationServices;
@@ -45,6 +46,24 @@ public class JobApplicationController {
         JobApplication createdJobApplication = jobApplicationService.createJobApplication(jobApplication);
 
         return ResponseEntity.ok(createdJobApplication);  // Return the created job application
+    }
+    @PatchMapping("/application/{applicationId}")
+    public ResponseEntity<JobApplication> updateJobApplicationStatus(
+            @PathVariable Long applicationId, @RequestBody ApplicationStatus status) {
+
+        // Find the job application by its ID
+        JobApplication jobApplication = jobApplicationService.getJobApplicationById(applicationId);
+        if (jobApplication == null) {
+            return ResponseEntity.notFound().build();  // Return 404 if the job application is not found
+        }
+
+        // Update the status
+        jobApplication.setStatus(status);
+
+        // Save the updated job application
+        JobApplication updatedJobApplication = jobApplicationService.createJobApplication(jobApplication);
+
+        return ResponseEntity.ok(updatedJobApplication);  // Return the updated job application
     }
 
 }

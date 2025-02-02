@@ -21,4 +21,8 @@ public class JobApplicationServices {
         }
         return jobApplicationRepository.save(jobApplication);  // Save the job application
     }
+
+    public JobApplication getJobApplicationById(Long applicationId) {
+        return jobApplicationRepository.findById(applicationId).orElse(null);
+    }
 }
