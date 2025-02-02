@@ -19,9 +19,8 @@ export const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-violet-500 to-blue-500">
-    <div className="absolute top-0 left-0 w-48 h-48 bg-purple-300 rounded-full opacity-30 -z-10"></div>
      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-        <h1 className="text-3xl font-mono font-bold text-blue-600 text-center mb-6">You’re Cooked</h1>
+        <h1 className="text-3xl font-mono font-bold text-blue-600 text-center mb-6">You’re (not) Cooked</h1>
         
         {/* Toggle between Login and SignUp */}
         <div className="text-center mb-4">
@@ -91,5 +90,6 @@ export const Login = () => {
     </div>
   );
 };
+
 
 

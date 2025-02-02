@@ -4,19 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b97882c-9030-4897-be96-b24a2386f733" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ButtonDemo.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Dashboard.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/TableDemo.jsx" afterDir="false" />
+    <list default="true" id="9b97882c-9030-4897-be96-b24a2386f733" name="Changes" comment="UI revamp.">
+      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/APIs.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/applications/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/home/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/pie-chart.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/app/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/FriendActivity.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/FriendActivity.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/applications.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Applications.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/dashboard.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/leaderboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ScrollableBox.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/ui/playerpoint.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Playerpoint.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/TableDemo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/yourecooked.com/src/components/TableDemo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JSX File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -86,9 +86,20 @@
       <option name="presentableId" value="Default" />
       <updated>1738428818302</updated>
     </task>
+    <task id="LOCAL-00001" summary="REVAMP">
+      <option name="closed" value="true" />
+      <created>1738498575464</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738498575464</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="REVAMP" />
+    <MESSAGE value="UI revamp." />
+    <option name="LAST_COMMIT_MESSAGE" value="UI revamp." />
   </component>
 </project>

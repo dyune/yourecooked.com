@@ -13,6 +13,7 @@ import {
 
 import {useState} from "react";
 import {ButtonDemo} from "@/components/ButtonDemo";
+import {Pie2} from "@/components/ui/pie-chart";
 // const [applications, setApplications] = useState([
 //     {
 //       id: "APP001",
@@ -172,9 +173,10 @@ export const TableDemo = () => {
 
         <div className="flex flex-col space-y-4 w-full">
             {/* Content above the table */}
-            <div>
+            <div className="flex flex-row gap-4 justify-between">
+                <Pie2 ></Pie2>
                 {/* Table Container */}
-                <div className="bg-white w-[60%] min-h-[70%] flex flex-col p-6 rounded-xl shadow-lg">
+                <div className="bg-white w-[73%] min-h-[100%] flex flex-col p-6 rounded-xl shadow-lg">
                     <div className="flex flex-row gap-4">
                         <h2 className="text-xl font-semibold font-mono mb-4 mr-4 text-left ml-2">Applications</h2>
                         <ButtonDemo/>
