@@ -39,80 +39,6 @@ import {
 } from "@/components/ui/table"
 
 import {useState} from "react";
-// const [applications, setApplications] = useState([
-//     {
-//       id: "APP001",
-//       company: "Company A",
-//       position: "Software Engineer",
-//       status: "Submitted",
-//     },
-//     {
-//       id: "APP002",
-//       company: "Company B",
-//       position: "Product Manager",
-//       status: "Interview",
-//     },
-//     {
-//       id: "APP003",
-//       company: "Company C",
-//       position: "Data Scientist",
-//       status: "Accepted",
-//     },
-//     {
-//       id: "APP004",
-//       company: "Company D",
-//       position: "UX Designer",
-//       status: "Rejected",
-//     },
-//     {
-//       id: "APP005",
-//       company: "Company E",
-//       position: "Backend Developer",
-//       status: "Submitted",
-//     },
-//     {
-//       id: "APP006",
-//       company: "Company F",
-//       position: "Frontend Developer",
-//       status: "Pending",
-//     },
-//     {
-//       id: "APP007",
-//       company: "Company G",
-//       position: "QA Engineer",
-//       status: "Interview",
-//     },
-//     {
-//         id: "APP008",
-//         company: "Company G",
-//         position: "QA Engineer",
-//         status: "Interview",
-//       },
-//       {
-//         id: "APP009",
-//         company: "Company G",
-//         position: "QA Engineer",
-//         status: "Interview",
-//       },
-//       {
-//         id: "APP010",
-//         company: "Company G",
-//         position: "QA Engineer",
-//         status: "Interview",
-//       },
-//       {
-//         id: "APP011",
-//         company: "Company G",
-//         position: "QA Engineer",
-//         status: "Interview",
-//       },
-//       {
-//         id: "APP012",
-//         company: "Company G",
-//         position: "QA Engineer",
-//         status: "Interview",
-//       },
-//   ]);
   
   
 export const TableDemo = () => {
@@ -190,11 +116,31 @@ export const TableDemo = () => {
             //status: "Interview",
           },
       ]);
+
+      const [open, setOpen] = useState(false);
+      const [company, setCompany] = useState("");
+      const [position, setPosition] = useState("");
+
     const handleStatusChange = (id, newStatus) => {
         setApplications((prev) =>
           prev.map((app) => (app.id === id ? { ...app, status: newStatus } : app))
         );
       };
+
+      const handleSubmit = () => {
+        if (company && position) {
+          setApplications((prevApps) => {
+            const newId = `APP${(prevApps.length + 1).toString().padStart(3, "0")}`;
+            return [...prevApps, { id: newId, company, position, status: "Submitted" }];
+          });
+      
+          setCompany("");
+          setPosition("");
+          setOpen(false);
+        }
+      };
+      
+
   return (
 
     <div className="flex flex-col h-screen">
@@ -253,77 +199,137 @@ export const TableDemo = () => {
     </Table>
     </div>
   </div>
-  </div>
+  <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Add New Application</DialogTitle>
+          </DialogHeader>
 
-  )
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="company">Company</Label>
+              <Input
+                id="company"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                placeholder="Enter company name"
+              />
+            </div>
+            <div>
+              <Label htmlFor="position">Position</Label>
+              <Input
+                id="position"
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+                placeholder="Enter job position"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button onClick={handleSubmit}>Submit</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
 }
-
-
-// import { useState } from "react";
-// const statuses = ["Submitted", "Interview", "Accepted", "Rejected"];
-
-// export const TableDemo = () => {
-//     const [selectedRow, setSelectedRow] = useState(null);
-  
-//     const handleRowClick = (id) => {
-//       setSelectedRow(id === selectedRow ? null : id);
-//     };
-  
-//     return (
-//       <div className="flex flex-col h-screen">
-//         <div className="flex-1 bg-gradient-to-br from-violet-500 to-blue-500 p-8"></div>
-  
-//         <div className="bg-white w-full h-[70%] flex flex-col items-center p-4 overflow-y-auto">
-//           <h2 className="text-2xl font-bold mb-4">Applications</h2>
-  
-//           <div className="relative w-[90%] overflow-auto border rounded-xl shadow-md">
-//             <table className="w-full text-sm text-left">
-//               <thead className="bg-gray-100">
-//                 <tr>
-//                   <th className="px-4 py-2">Company</th>
-//                   <th className="px-4 py-2">Position</th>
-//                   <th className="px-4 py-2">Status</th>
-//                 </tr>
-//               </thead>
-  
-//               <tbody>
-//                 {applications.map((app) => (
-//                   <tr
-//                     key={app.id}
-//                     onClick={() => handleRowClick(app.id)}
-//                     className={`cursor-pointer ${
-//                       selectedRow === app.id ? "bg-blue-100" : "hover:bg-gray-50"
-//                     }`}
-//                   >
-//                     <td className="px-4 py-2">{app.company}</td>
-//                     <td className="px-4 py-2">{app.position}</td>
-//                     <td className="px-4 py-2">{app.status}</td>
-//                   </tr>
-//                 ))}
-//               </tbody>
-//             </table>
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   };
 
 import { Button } from "@/components/ui/button"
 
-export function ButtonDemo() {
-    return (
-      <div className="relative">
-        <Button className="absolute font-semibold font-mono top-4 left-4">
-          Back
-        </Button>
 
-        <Button className="absolute top-12 right-16 w-10 h-10 text-3xl">
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+export function ButtonDemo() {
+  const [open, setOpen] = useState(false);
+  const [company, setCompany] = useState("");
+  const [position, setPosition] = useState("");
+  const [applications, setApplications] = useState([]); // Stores submitted applications
+
+  const handleSubmit = () => {
+    if (company && position) {
+      setApplications([...applications, { company, position }]);
+      setCompany("");
+      setPosition("");
+      setOpen(false);
+    }
+};
+
+//   const handleSubmit = () => {
+//     console.log("Company:", company);
+//     console.log("Position:", position);
+//     setOpen(false);
+//   };
+
+  return (
+    <div className="relative">
+      <Button className="absolute font-semibold font-mono top-4 left-4">
+        Back
+      </Button>
+
+      {/* Plus Button to Open Modal */}
+      <Button className="absolute top-12 right-16 w-10 h-10 text-3xl" onClick={() => setOpen(true)}>
         +
       </Button>
 
       <Button className="absolute top-12 right-28 w-10 h-10 text-3xl">
         -
       </Button>
-      </div>
-    );
-  }
+
+      {/* Dialog (Pop-up Form) */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Add New Application</DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="company">Company</Label>
+              <Input
+                id="company"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                placeholder="Enter company name"
+              />
+            </div>
+            <div>
+              <Label htmlFor="position">Position</Label>
+              <Input
+                id="position"
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+                placeholder="Enter job position"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button onClick={handleSubmit}>Submit</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+
+// export function ButtonDemo() {
+//     return (
+//       <div className="relative">
+//         <Button className="absolute font-semibold font-mono top-4 left-4">
+//           Back
+//         </Button>
+
+//         <Button className="absolute top-12 right-16 w-10 h-10 text-3xl">
+//         +
+//       </Button>
+
+//       <Button className="absolute top-12 right-28 w-10 h-10 text-3xl">
+//         -
+//       </Button>
+//       </div>
+//     );
+//   }

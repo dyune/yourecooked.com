@@ -10,7 +10,8 @@ import { Friendboard } from "@/components/ui/FriendActivity";
 export default function Home() {
   return (
     <div>
-      <LoginDemo/>
+      <ButtonDemo/>
+      <TableDemo/>
     </div>
 
   );
