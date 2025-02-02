@@ -11,24 +11,24 @@ import {
 
 export const FriendActivity = () => {
     return(
-        <div className="border-black px-0 py-10 bg-gradient-to-br from-white to-gray-400 rounded-xl">
+        <div className="border-black px-4 py-6 bg-white rounded-lg">
             <Table>
-                <TableCaption className="text-2 font-extrabold text-violet-500">Friend Activities</TableCaption>
+                <TableCaption className="text-2 font-extrabold font-mono text-violet-500">Friend Activities</TableCaption>
                     <TableBody>
                         <TableRow>
-                        <TableCell className="font-medium text-2xl">David got rejected at DRW</TableCell>
+                        <TableCell className="font-medium font-mono text-2xl">David got rejected at DRW</TableCell>
                         </TableRow>
                         <TableRow>
-                        <TableCell className="font-medium text-2xl">Tyler got rejected at DRW</TableCell>
+                        <TableCell className="font-medium font-mono text-2xl">Tyler got rejected at DRW</TableCell>
                         </TableRow>
                         <TableRow>
-                        <TableCell className="font-medium text-2xl">Hamza got in Amazon?</TableCell>
+                        <TableCell className="font-medium font-mono text-2xl">Hamza got in Amazon?</TableCell>
                         </TableRow>
                         <TableRow>
-                        <TableCell className="font-medium text-2xl">Celine got</TableCell>
+                        <TableCell className="font-medium font-mono text-2xl">Celine got</TableCell>
                         </TableRow>
                         <TableRow>
-                        <TableCell className="font-medium text-2xl">idk at this point</TableCell>
+                        <TableCell className="font-medium font-mono text-2xl">idk at this point</TableCell>
                         </TableRow>
                     </TableBody>
             </Table>
