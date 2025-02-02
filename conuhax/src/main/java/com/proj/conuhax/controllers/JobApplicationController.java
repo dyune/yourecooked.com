@@ -8,6 +8,8 @@ import com.proj.conuhax.services.UserServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping()  // Define a more specific base path
 public class JobApplicationController {
@@ -47,23 +49,30 @@ public class JobApplicationController {
 
         return ResponseEntity.ok(createdJobApplication);  // Return the created job application
     }
-    @PatchMapping("/application/{applicationId}")
-    public ResponseEntity<JobApplication> updateJobApplicationStatus(
-            @PathVariable Long applicationId, @RequestBody ApplicationStatus status) {
 
-        // Find the job application by its ID
-        JobApplication jobApplication = jobApplicationService.getJobApplicationById(applicationId);
+    @PatchMapping("/application/{id}")
+    public ResponseEntity<JobApplication> updateApplicationStatus(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+
+        JobApplication jobApplication = jobApplicationService.getJobApplicationById(id);
         if (jobApplication == null) {
-            return ResponseEntity.notFound().build();  // Return 404 if the job application is not found
+            return ResponseEntity.notFound().build();
+        }
+        String currentStatus = jobApplication.getStatus().toString();
+
+
+        String status = updates.get("status");
+        if (status != null) {
+            try {
+                jobApplication.setStatus(ApplicationStatus.valueOf(status.toUpperCase()));
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body(null);
+            }
         }
 
-        // Update the status
-        jobApplication.setStatus(status);
 
-        // Save the updated job application
-        JobApplication updatedJobApplication = jobApplicationService.createJobApplication(jobApplication);
-
-        return ResponseEntity.ok(updatedJobApplication);  // Return the updated job application
+        JobApplication updatedJobApplication = jobApplicationService.save(jobApplication);
+        return ResponseEntity.ok(updatedJobApplication);
     }
+
 
 }

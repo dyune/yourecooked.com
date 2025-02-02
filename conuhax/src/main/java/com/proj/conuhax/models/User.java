@@ -31,7 +31,7 @@ public class User {
     // This unidirectional one-to-many mapping tells JPA to store the foreign key (owner_id)
     // in the job_applications table. Note that JobApplication does not have any reference to User.
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "owner_id") // This column will be added to the job_applications table.
+    @JoinColumn(name = "user_id") // This column will be added to the job_applications table.
     private List<JobApplication> jobApplications = new ArrayList<>();
 
     public User() {

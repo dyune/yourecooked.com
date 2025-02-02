@@ -62,4 +62,8 @@ public class JobApplication {
     public String getDescription() {
         return this.description;
     }
+
+    public Long getUserId() {
+        return this.user_id;
+    }
 }
