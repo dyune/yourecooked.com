@@ -82,7 +82,7 @@ export const LoginDemo = () => {
             type="submit"
             className="w-full py-2 bg-gradient-to-br from-violet-500 to-blue-500 text-white rounded-md hover:bg-gradient-to-br from-violet-500 to-blue-500"
           >
-            <div className={`font-bold ${isSignUp ? "text-lg" : "text-sm"}`}>
+            <div className={`font-bold ${isSignUp ? "text-lg font-mono" : "text-lg font-mono"}`}>
             {isSignUp ? "Sign Up" : "Login"}
             </div>
           </button>

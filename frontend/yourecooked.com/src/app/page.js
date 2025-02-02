@@ -8,8 +8,7 @@ import { ButtonDemo } from "@/components/ui/applications";
 export default function Home() {
   return (
     <div>
-      <ButtonDemo/>
-      <TableDemo/>
+      <LoginDemo/>
     </div>
 
   );
