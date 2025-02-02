@@ -18,16 +18,14 @@ public class JobApplication {
     @Column(nullable = true)
     private String description;
 
+
     @Column(nullable = false)
     private String roleName;
 
-    @Column(nullable = false)
-    private Long ownerId;
+    @Column(name = "owner_id")
+    private Long user_id;  // or similar field with a mismatch in naming convention
 
 
-
-    public JobApplication() {
-    }
 
     public Long getId() {
         return id;
@@ -69,13 +67,8 @@ public class JobApplication {
         this.roleName = roleName;
     }
 
-    public Long getOwnerId() {
-        return ownerId;
+    public void setUser_Id(Long user_id) {
+        this.setUser_Id(user_id);
     }
-
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
-    }
-
 }
 
