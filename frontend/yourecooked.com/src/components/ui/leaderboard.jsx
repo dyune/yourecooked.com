@@ -37,5 +37,12 @@ export const ScrollableBox = () => {
           </div>
   );
 };
+export const LeadName = () => {
+    return (
+        <div>
+            <h1>Pointage leaderboard</h1>
+        </div>
+    );
+}
 
-export default ScrollableBox;
+
